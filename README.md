@@ -55,4 +55,4 @@ Ce dépôt contient 1 projets divisé en 2 fichiers  :
 └── README.md
 ```
 
-Les deux projets restent séparés. Ouvrez les fichiers HTML depuis le dossier de leur projet respectif.
+Les deux projets restent séparés. Ouvrez le fichier HTML depuis le dossier de leur projet respectif.
