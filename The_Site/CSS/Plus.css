@@ -1,0 +1,192 @@
+.JFEJ-plus-options {
+    display: grid;
+    gap: 16px;
+    max-width: 900px;
+}
+
+.JFEJ-plus-card {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 20px;
+    border: 1px solid var(--glass-border);
+    border-radius: 14px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+}
+
+.JFEJ-plus-card-icon {
+    display: grid;
+    width: 48px;
+    height: 48px;
+    flex: 0 0 auto;
+    place-items: center;
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    background: rgba(138, 43, 226, 0.18);
+    font-size: 22px;
+}
+
+.JFEJ-plus-card-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.JFEJ-plus-card-content h2 {
+    margin-bottom: 5px;
+    color: var(--text-main);
+    font-size: 16px;
+}
+
+.JFEJ-plus-card-content p {
+    color: var(--text-muted);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.JFEJ-plus-action,
+.JFEJ-plus-status {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 40px;
+    padding: 9px 14px;
+    border: 1px solid var(--glass-border);
+    border-radius: 9px;
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-main);
+    font: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+button.JFEJ-plus-action {
+    cursor: pointer;
+}
+
+.JFEJ-plus-action:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.16);
+}
+
+.JFEJ-plus-action:focus-visible {
+    outline: 2px solid #ff007f;
+    outline-offset: 3px;
+}
+
+.JFEJ-plus-section {
+    max-width: 900px;
+    margin-top: 30px;
+}
+
+.JFEJ-plus-section-title {
+    margin-bottom: 14px;
+    color: var(--text-main);
+    font-size: 18px;
+}
+
+.JFEJ-plus-shortcuts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 14px;
+}
+
+.JFEJ-plus-shortcut {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px;
+    border: 1px solid var(--glass-border);
+    border-radius: 14px;
+    background: var(--glass-bg);
+    color: var(--text-main);
+    text-decoration: none;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.JFEJ-plus-shortcut:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.JFEJ-plus-shortcut > span:nth-child(2) {
+    display: grid;
+    flex: 1;
+    gap: 4px;
+}
+
+.JFEJ-plus-shortcut strong {
+    font-size: 13px;
+}
+
+.JFEJ-plus-shortcut small {
+    color: var(--text-muted);
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+.JFEJ-plus-shortcut-arrow {
+    color: var(--text-muted);
+    font-size: 20px;
+}
+
+.JFEJ-plus-faq {
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+    border-radius: 14px;
+    background: var(--glass-bg);
+}
+
+.JFEJ-plus-faq details + details {
+    border-top: 1px solid var(--glass-border);
+}
+
+.JFEJ-plus-faq summary {
+    padding: 16px 18px;
+    color: var(--text-main);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.JFEJ-plus-faq summary::marker {
+    color: #ff007f;
+}
+
+.JFEJ-plus-faq p {
+    padding: 0 18px 16px;
+    color: var(--text-muted);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.JFEJ-plus-shortcut:focus-visible,
+.JFEJ-plus-faq summary:focus-visible {
+    outline: 2px solid #ff007f;
+    outline-offset: 3px;
+}
+
+body.light-mode .JFEJ-plus-action {
+    background: rgba(34, 16, 44, 0.06);
+}
+
+body.light-mode .JFEJ-plus-action:hover:not(:disabled) {
+    background: rgba(34, 16, 44, 0.12);
+}
+
+@media (max-width: 650px) {
+    .JFEJ-plus-card {
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .JFEJ-plus-card-content {
+        flex-basis: calc(100% - 66px);
+    }
+
+    .JFEJ-plus-action {
+        margin-left: 66px;
+    }
+}

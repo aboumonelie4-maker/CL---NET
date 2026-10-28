@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Messages - JFEJ</title>
+    <link rel="stylesheet" href="../CSS/Accueil.css">
+    <link rel="stylesheet" href="../CSS/Messages.css">
+</head>
+<body>
+    <div class="JFEJ-messages-app">
+        <aside class="JFEJ-contacts-panel" aria-label="Contacts et clubs">
+            <a class="JFEJ-messages-brand" href="Accueil.html" aria-label="JFEJ, retour à l'accueil">
+                <span class="JFEJ-logo-icon">J</span>
+                <span class="JFEJ-brand-title">JFEJ <span class="JFEJ-star">✦</span></span>
+            </a>
+
+            <section class="JFEJ-contact-section JFEJ-clubs-section" aria-labelledby="clubs-title">
+                <div class="JFEJ-panel-heading">
+                    <h2 id="clubs-title">Mes spécialités</h2>
+                </div>
+                <nav class="JFEJ-club-list" id="userSpecialties" aria-label="Mes spécialités">
+                    <p class="JFEJ-clubs-empty">Connectez-vous et choisissez vos spécialités depuis votre compte.</p>
+                </nav>
+            </section>
+
+            <section class="JFEJ-contact-section JFEJ-contacts-section" aria-labelledby="contacts-title">
+                <div class="JFEJ-panel-heading">
+                    <h1 id="contacts-title">Contacts</h1>
+                    <span class="JFEJ-panel-count">4</span>
+                </div>
+                <div class="JFEJ-contact-list">
+                    <button class="JFEJ-contact is-selected" type="button" data-message-contact
+                        data-name="Lucas Bernard" data-initials="LB" data-class="Terminale générale"
+                        data-specialties="NSI, Mathématiques, Physique-Chimie" data-status="online"
+                        data-preview="Tu as avancé sur le devoir de physique ?"
+                        data-message-one="Tu as avancé sur le devoir de physique ?" data-message-two="Oui, je viens de terminer l'exercice 4. Je t'envoie ma méthode !"
+                        aria-pressed="true">
+                        <span class="JFEJ-contact-avatar avatar-violet">LB<span class="JFEJ-presence is-online" aria-label="En ligne"></span></span>
+                        <span class="JFEJ-contact-copy"><strong>Lucas Bernard</strong><small>Tu as avancé sur le devoir de physique ?</small></span>
+                        <span class="JFEJ-contact-time">11:15</span>
+                    </button>
+                    <button class="JFEJ-contact" type="button" data-message-contact
+                        data-name="Sarah K." data-initials="SK" data-class="Première générale"
+                        data-specialties="Mathématiques, HGGSP, SES" data-status="offline"
+                        data-preview="On se retrouve au CDI ?"
+                        data-message-one="On se retrouve au CDI à la pause de 10h ?" data-message-two="Oui, je t'attends devant l'entrée."
+                        aria-pressed="false">
+                        <span class="JFEJ-contact-avatar avatar-rose">SK<span class="JFEJ-presence" aria-label="Hors ligne"></span></span>
+                        <span class="JFEJ-contact-copy"><strong>Sarah K.</strong><small>On se retrouve au CDI ?</small></span>
+                        <span class="JFEJ-contact-time">09:02</span>
+                    </button>
+                    <button class="JFEJ-contact" type="button" data-message-contact
+                        data-name="Emma Petit" data-initials="EP" data-class="Terminale générale"
+                        data-specialties="SVT, Physique-Chimie, Mathématiques" data-status="online"
+                        data-preview="Merci pour la fiche de révision !"
+                        data-message-one="Merci pour la fiche de révision !" data-message-two="Avec plaisir, j'ajouterai la partie sur la génétique demain."
+                        aria-pressed="false">
+                        <span class="JFEJ-contact-avatar avatar-blue">EP<span class="JFEJ-presence is-online" aria-label="En ligne"></span></span>
+                        <span class="JFEJ-contact-copy"><strong>Emma Petit</strong><small>Merci pour la fiche de révision !</small></span>
+                        <span class="JFEJ-contact-time">Hier</span>
+                    </button>
+                    <button class="JFEJ-contact" type="button" data-message-contact
+                        data-name="Yanis Moreau" data-initials="YM" data-class="Première générale"
+                        data-specialties="NSI, Mathématiques, Physique-Chimie" data-status="offline"
+                        data-preview="Tu peux m'aider pour le code Python ?"
+                        data-message-one="Tu peux m'aider pour le code Python ?" data-message-two="Bien sûr ! Envoie-moi l'énoncé et on regarde ça ensemble."
+                        aria-pressed="false">
+                        <span class="JFEJ-contact-avatar avatar-orange">YM<span class="JFEJ-presence" aria-label="Hors ligne"></span></span>
+                        <span class="JFEJ-contact-copy"><strong>Yanis Moreau</strong><small>Tu peux m'aider pour le code Python ?</small></span>
+                        <span class="JFEJ-contact-time">Lun.</span>
+                    </button>
+                </div>
+            </section>
+
+            <a class="JFEJ-back-home" href="Accueil.html"><span aria-hidden="true">←</span> Retour à l’accueil</a>
+        </aside>
+
+        <main class="JFEJ-conversation" aria-label="Conversation">
+            <header class="JFEJ-conversation-header">
+                <div>
+                    <p class="JFEJ-conversation-eyebrow">MESSAGERIE</p>
+                    <h1>Messages</h1>
+                </div>
+                <a class="JFEJ-conversation-account" href="Mon%20compte.html" aria-label="Ouvrir mon compte">👤</a>
+            </header>
+
+            <section class="JFEJ-chat">
+                <header class="JFEJ-chat-header">
+                    <span class="JFEJ-contact-avatar avatar-violet" id="conversationAvatar" aria-hidden="true">LB<span class="JFEJ-presence is-online"></span></span>
+                    <div class="JFEJ-chat-person">
+                        <h2 id="conversationName">Lucas Bernard</h2>
+                        <p><span class="JFEJ-status-dot is-online" id="conversationStatusDot"></span><span id="conversationStatus">En ligne</span></p>
+                    </div>
+                </header>
+
+                <div class="JFEJ-chat-history" aria-live="polite">
+                    <p class="JFEJ-chat-date">Aujourd’hui</p>
+                    <div class="JFEJ-message-row">
+                        <span class="JFEJ-message-avatar avatar-violet" id="messageAvatar" aria-hidden="true">LB</span>
+                        <div class="JFEJ-message-content">
+                            <span class="JFEJ-message-author" id="messageAuthor">Lucas Bernard</span>
+                            <p class="JFEJ-message-bubble" id="incomingMessage">Tu as avancé sur le devoir de physique ?</p>
+                            <time>11:15</time>
+                        </div>
+                    </div>
+                    <div class="JFEJ-message-row is-own-message">
+                        <div class="JFEJ-message-content">
+                            <span class="JFEJ-message-author">Vous</span>
+                            <p class="JFEJ-message-bubble" id="replyMessage">Oui, je viens de terminer l'exercice 4. Je t'envoie ma méthode !</p>
+                            <time>11:18</time>
+                        </div>
+                    </div>
+                </div>
+                <p class="JFEJ-chat-demo-note">Aperçu de conversation — les messages affichés sont des exemples.</p>
+            </section>
+        </main>
+
+        <aside class="JFEJ-profile-panel" aria-label="Informations du contact">
+            <div class="JFEJ-profile-card">
+                <div class="JFEJ-profile-cover" aria-hidden="true"></div>
+                <span class="JFEJ-profile-avatar avatar-violet" id="profileAvatar" aria-hidden="true">LB<span class="JFEJ-presence is-online"></span></span>
+                <div class="JFEJ-profile-content">
+                    <p class="JFEJ-profile-label">PROFIL DU CONTACT</p>
+                    <h2 id="profileName">Lucas Bernard</h2>
+                    <p class="JFEJ-profile-status"><span class="JFEJ-status-dot is-online" id="profileStatusDot"></span><span id="profileStatus">En ligne</span></p>
+
+                    <div class="JFEJ-profile-detail">
+                        <span class="JFEJ-profile-detail-icon" aria-hidden="true">🎓</span>
+                        <div><small>Classe</small><strong id="profileClass">Terminale générale</strong></div>
+                    </div>
+                    <div class="JFEJ-profile-detail">
+                        <span class="JFEJ-profile-detail-icon" aria-hidden="true">📚</span>
+                        <div><small>Spécialités</small><strong id="profileSpecialties">NSI, Mathématiques, Physique-Chimie</strong></div>
+                    </div>
+                </div>
+            </div>
+            <p class="JFEJ-profile-note">Les informations de profil sont des exemples d’affichage.</p>
+        </aside>
+    </div>
+
+    <script src="../JS/The_Site.js"></script>
+</body>
+</html>

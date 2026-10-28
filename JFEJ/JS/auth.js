@@ -4,7 +4,6 @@
 // ==========================================
 
 let pendingRegistration = null;
-let registrationConfirmationStep = 1;
 
 document.addEventListener("DOMContentLoaded", () => {
   // 1. Initialisation d'un compte de test si aucun utilisateur n'existe
@@ -24,7 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (registerForm) {
     initializeRegistrationSpecialties();
     registerForm.addEventListener("submit", handleRegister);
-    initializeRegistrationConfirmation();
   }
 
   // 5. Mise à jour de la barre de navigation si un utilisateur est connecté
@@ -94,7 +92,7 @@ function handleLogin(e) {
     sessionStorage.setItem("jfej_current_user", JSON.stringify(foundUser));
 
     setTimeout(() => {
-      window.location.href = "../../../The%20Site/HTML/Mon%20compte.html";
+      window.location.href = "../../../The_Site/HTML/Mon%20compte.html";
     }, 1000);
   } else {
     showAlert(alertBox, "Adresse email ou mot de passe incorrect.", "error");
@@ -169,74 +167,7 @@ function handleRegister(e) {
       : `Élève en ${classe}.`
   };
 
-  if (!openRegistrationConfirmation()) {
-    pendingRegistration = null;
-    showAlert(alertBox, "La confirmation de l'inscription est indisponible. Rechargez la page et réessayez.", "error");
-  }
-}
-
-function initializeRegistrationConfirmation() {
-  const dialog = document.getElementById("registration-confirmation");
-  if (!dialog) return;
-
-  dialog.querySelectorAll("[data-confirmation-action]").forEach((button) => {
-    button.addEventListener("click", () => {
-      const action = button.dataset.confirmationAction;
-      if (action === "home") {
-        pendingRegistration = null;
-        dialog.hidden = true;
-        window.location.href = "../../HTML/index.html";
-      } else if (action === "next") {
-        showRegistrationConfirmation(registrationConfirmationStep + 1);
-      } else if (action === "confirm") {
-        completeRegistration();
-      }
-    });
-  });
-
-  dialog.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      event.preventDefault();
-      return;
-    }
-    if (event.key !== "Tab") return;
-
-    const focusableButtons = Array.from(
-      dialog.querySelectorAll("button:not([disabled])")
-    ).filter((button) => !button.closest("[hidden]"));
-    const firstButton = focusableButtons[0];
-    const lastButton = focusableButtons[focusableButtons.length - 1];
-    if (event.shiftKey && document.activeElement === firstButton) {
-      event.preventDefault();
-      lastButton.focus();
-    } else if (!event.shiftKey && document.activeElement === lastButton) {
-      event.preventDefault();
-      firstButton.focus();
-    }
-  });
-}
-
-function openRegistrationConfirmation() {
-  const dialog = document.getElementById("registration-confirmation");
-  if (!dialog) return false;
-  showRegistrationConfirmation(1);
-  return true;
-}
-
-function showRegistrationConfirmation(step) {
-  const dialog = document.getElementById("registration-confirmation");
-  if (!dialog) return;
-  registrationConfirmationStep = step;
-  dialog.hidden = false;
-  dialog.querySelectorAll("[data-confirmation-step]").forEach((panel) => {
-    panel.hidden = Number(panel.dataset.confirmationStep) !== step;
-  });
-  dialog.setAttribute("aria-labelledby", `confirmation-title-${step}`);
-  dialog.setAttribute("aria-describedby", `confirmation-message-${step}`);
-  const firstButton = dialog.querySelector(
-    `[data-confirmation-step="${step}"] button:not([disabled])`
-  );
-  if (firstButton) firstButton.focus();
+  completeRegistration();
 }
 
 function completeRegistration() {
@@ -246,7 +177,6 @@ function completeRegistration() {
   const users = JSON.parse(localStorage.getItem("jfej_users") || "[]");
   const existingUser = users.find((user) => user.email.toLowerCase() === pendingRegistration.email);
   if (existingUser) {
-    document.getElementById("registration-confirmation").hidden = true;
     pendingRegistration = null;
     showAlert(alertBox, "Cette adresse email possède déjà un compte.", "error");
     return;
@@ -257,12 +187,11 @@ function completeRegistration() {
   localStorage.setItem("jfej_users", JSON.stringify(users));
   sessionStorage.setItem("jfej_current_user", JSON.stringify(newUser));
   pendingRegistration = null;
-  document.getElementById("registration-confirmation").hidden = true;
 
   showAlert(alertBox, `Compte créé avec succès ! Bienvenue ${newUser.prenom} sur JFEJ School. Redirection vers The Site...`, "success");
 
   setTimeout(() => {
-    window.location.href = "../../../The%20Site/HTML/Mon%20compte.html";
+    window.location.href = "../../../The_Site/HTML/Mon%20compte.html";
   }, 1200);
 }
 
@@ -332,7 +261,7 @@ function updateNavbarAuthStatus() {
 
   // Calcul du bon chemin relatif vers profil.html
   const isInsideHtmlDir = window.location.pathname.includes("/HTML/") || window.location.pathname.endsWith("/HTML");
-  const profilPath = isInsideHtmlDir ? "../../../The%20Site/HTML/Mon%20compte.html" : "../../HTML/profil.html";
+  const profilPath = isInsideHtmlDir ? "../../../The_Site/HTML/Mon%20compte.html" : "../../HTML/profil.html";
 
   if (currentUserRaw) {
     const user = JSON.parse(currentUserRaw);

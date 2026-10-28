@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plus - JFEJ</title>
+    <link rel="stylesheet" href="../CSS/Accueil.css">
+    <link rel="stylesheet" href="../CSS/Plus.css">
+</head>
+<body>
+    <div class="JFEJ-app" id="appContainer">
+        <div class="JFEJ-bg" aria-hidden="true">
+            <div class="JFEJ-blob JFEJ-blob--violet"></div>
+            <div class="JFEJ-blob JFEJ-blob--rose"></div>
+            <div class="JFEJ-blob JFEJ-blob--bleu"></div>
+        </div>
+
+        <nav class="JFEJ-sidebar" aria-label="Navigation principale">
+            <div class="JFEJ-brand">
+                <a class="JFEJ-logo-wrapper" href="Accueil.html" aria-label="JFEJ, accueil">
+                    <span class="JFEJ-logo-icon">J</span>
+                    <span class="JFEJ-brand-title">JFEJ <span class="JFEJ-star">✦</span></span>
+                </a>
+                <button class="JFEJ-toggle-btn" id="btnToggleSidebar" type="button" title="Réduire/Étendre le menu" aria-label="Réduire le menu">◀</button>
+            </div>
+
+            <div class="JFEJ-links">
+                <a class="JFEJ-link" href="Accueil.html">
+                    <span class="JFEJ-link-icon">🏠</span>
+                    <span class="JFEJ-link-text">Accueil</span>
+                </a>
+                <a class="JFEJ-link" href="#" id="btnSearch">
+                    <span class="JFEJ-link-icon">🔍</span>
+                    <span class="JFEJ-link-text">Rechercher</span>
+                </a>
+                <a class="JFEJ-link" href="Mur%20_du%20_lyc%C3%A9e.html">
+                    <span class="JFEJ-link-icon">▦</span>
+                    <span class="JFEJ-link-text">Mur du lycée</span>
+                    <span class="JFEJ-badge">7</span>
+                </a>
+                <a class="JFEJ-link" href="Messages.html">
+                    <span class="JFEJ-link-icon">◉</span>
+                    <span class="JFEJ-link-text">Messages</span>
+                    <span class="JFEJ-badge">3</span>
+                </a>
+
+                <div class="JFEJ-divider"></div>
+
+                <a class="JFEJ-link" href="Mon%20compte.html">
+                    <span class="JFEJ-link-icon">👤</span>
+                    <span class="JFEJ-link-text">Compte</span>
+                </a>
+                <a class="JFEJ-link is-active" href="Plus.html" aria-current="page">
+                    <span class="JFEJ-link-icon">☰</span>
+                    <span class="JFEJ-link-text">Plus</span>
+                </a>
+            </div>
+
+            <div class="JFEJ-user">
+                <div class="JFEJ-avatar" aria-hidden="true">J</div>
+                <div class="JFEJ-user-details">
+                    <div class="JFEJ-username">JFEJ</div>
+                    <div class="JFEJ-userrole">Élève</div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="JFEJ-search-panel" id="searchPanel">
+            <h2 class="JFEJ-heading">Recherche</h2>
+            <p class="JFEJ-subheading">Trouvez rapidement vos projets ou fichiers.</p>
+            <input type="search" class="JFEJ-search-input" placeholder="Tapez votre recherche..." aria-label="Rechercher">
+        </div>
+
+        <main class="JFEJ-main">
+            <header class="JFEJ-header">
+                <h1 class="JFEJ-heading">Plus</h1>
+                <p class="JFEJ-subheading">Retrouvez ici les options et ressources complémentaires de JFEJ.</p>
+            </header>
+
+            <section class="JFEJ-plus-options" aria-label="Options et ressources">
+                <article class="JFEJ-plus-card">
+                    <div class="JFEJ-plus-card-icon" aria-hidden="true">🌙</div>
+                    <div class="JFEJ-plus-card-content">
+                        <h2>Apparence</h2>
+                        <p>Choisissez le thème clair ou sombre pour votre interface.</p>
+                    </div>
+                    <button class="JFEJ-plus-action" id="btnTheme" type="button" aria-pressed="false">
+                        <span class="JFEJ-plus-action-icon" aria-hidden="true">🌙</span>
+                        <span id="themeLabel">Passer au mode sombre</span>
+                    </button>
+                </article>
+
+                <article class="JFEJ-plus-card">
+                    <div class="JFEJ-plus-card-icon" aria-hidden="true">📚</div>
+                    <div class="JFEJ-plus-card-content">
+                        <h2>Annales et révisions</h2>
+                        <p>Accédez aux ressources pour préparer vos examens.</p>
+                    </div>
+                    <a class="JFEJ-plus-action" href="https://miabecampus.com" target="_blank" rel="noopener noreferrer">
+                        Ouvrir les ressources
+                        <span aria-hidden="true">↗</span>
+                    </a>
+                </article>
+
+            </section>
+
+            <section class="JFEJ-plus-section" aria-labelledby="plus-shortcuts-title">
+                <h2 class="JFEJ-plus-section-title" id="plus-shortcuts-title">Raccourcis utiles</h2>
+                <div class="JFEJ-plus-shortcuts">
+                    <a class="JFEJ-plus-shortcut" href="Mon%20compte.html">
+                        <span class="JFEJ-plus-card-icon" aria-hidden="true">👤</span>
+                        <span><strong>Mon compte</strong><small>Consulter et modifier votre profil</small></span>
+                        <span class="JFEJ-plus-shortcut-arrow" aria-hidden="true">→</span>
+                    </a>
+                    <a class="JFEJ-plus-shortcut" href="Mur%20_du%20_lyc%C3%A9e.html">
+                        <span class="JFEJ-plus-card-icon" aria-hidden="true">▦</span>
+                        <span><strong>Mur du lycée</strong><small>Retrouver les publications de la communauté</small></span>
+                        <span class="JFEJ-plus-shortcut-arrow" aria-hidden="true">→</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="JFEJ-plus-section" aria-labelledby="plus-faq-title">
+                <h2 class="JFEJ-plus-section-title" id="plus-faq-title">Questions fréquentes</h2>
+                <div class="JFEJ-plus-faq">
+                    <details>
+                        <summary>Comment changer le thème de l’application ?</summary>
+                        <p>Utilisez le bouton « Apparence » en haut de cette page. Votre choix est mémorisé dans ce navigateur.</p>
+                    </details>
+                    <details>
+                        <summary>Où modifier mes informations ou mes spécialités ?</summary>
+                        <p>Ouvrez « Mon compte » depuis les raccourcis ci-dessus pour consulter ou modifier votre profil.</p>
+                    </details>
+                    <details>
+                        <summary>Je n’arrive pas à me connecter, que faire ?</summary>
+                        <p>Vérifiez votre adresse e-mail et votre mot de passe. Si le problème persiste, retournez à la page d’accueil pour accéder à la connexion.</p>
+                    </details>
+                    <details>
+                        <summary>Où trouver les ressources de révision ?</summary>
+                        <p>Le lien « Ouvrir les ressources » vous dirige vers le site externe d’annales et de révisions.</p>
+                    </details>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="../JS/The_Site.js"></script>
+</body>
+</html>
