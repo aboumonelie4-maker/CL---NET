@@ -112,40 +112,62 @@
 @media (max-width: 1024px) {
   .accueil-hero {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 32px;
   }
 
   #accueil h1 {
-    font-size: 3.5rem;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
   }
 
   .chat-desktop {
-    width: 380px;
+    width: min(100%, 380px);
   }
 }
 
 @media (max-width: 768px) {
   #accueil h1 {
-    font-size: 2.5rem;
+    font-size: clamp(1.9rem, 8vw, 2.25rem);
   }
 
   .accueil-hero {
-    gap: 30px;
+    gap: 20px;
+    margin-bottom: 28px;
   }
 
   .accueil-right {
-    gap: 15px;
+    gap: 12px;
+    width: 100%;
   }
 
   .chat-mobile {
-    width: 280px;
+    width: min(100%, 280px);
   }
 
   .chat-desktop {
-    width: 340px;
+    width: min(100%, 340px);
   }
 
   .accueil-description {
-    grid-column: 1;
+    margin-top: 12px;
+  }
+
+  #accueil p {
+    font-size: 0.96rem;
+    line-height: 1.55;
+    margin: 12px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  #accueil .accueil-right {
+    display: none;
+  }
+
+  .accueil-hero {
+    margin-bottom: 0;
+  }
+
+  #accueil.card-section {
+    padding: 16px;
   }
 }

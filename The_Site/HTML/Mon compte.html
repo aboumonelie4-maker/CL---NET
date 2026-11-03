@@ -6,8 +6,9 @@
 	<title>Mon compte - JFEJ</title>
 	<link rel="stylesheet" href="../CSS/Accueil.css">
 	<link rel="stylesheet" href="../CSS/Mon_compte.css">
+	<link rel="stylesheet" href="../CSS/Responsive.css">
 </head>
-<body data-logout-url="../../JFEJ/HTML/profil.html" data-login-required-url="../../JFEJ/HTML/profil.html">
+<body data-logout-url="../../JFEJ/HTML/profil.html" data-login-required-url="../../JFEJ/HTML/profil.html" data-account-home-url="../../JFEJ/HTML/index.html">
 	<div class="JFEJ-app" id="appContainer">
 		<div class="JFEJ-bg" aria-hidden="true">
 			<div class="JFEJ-blob JFEJ-blob--violet"></div>
@@ -26,7 +27,7 @@
 
 			<div class="JFEJ-links">
 				<a class="JFEJ-link" href="Accueil.html"><span class="JFEJ-link-icon">🏠</span><span class="JFEJ-link-text">Accueil</span></a>
-				<a class="JFEJ-link" href="#" id="btnSearch"><span class="JFEJ-link-icon">🔍</span><span class="JFEJ-link-text">Rechercher</span></a>
+				<a class="JFEJ-link" href="#" id="btnSearch" aria-controls="searchPanel" aria-expanded="false"><span class="JFEJ-link-icon">🔍</span><span class="JFEJ-link-text">Rechercher</span></a>
 				<a class="JFEJ-link" href="Mur%20_du%20_lyc%C3%A9e.html"><span class="JFEJ-link-icon">▦</span><span class="JFEJ-link-text">Mur du lycée</span><span class="JFEJ-badge">7</span></a>
 				<a class="JFEJ-link" href="Messages.html"><span class="JFEJ-link-icon">◉</span><span class="JFEJ-link-text">Messages</span><span class="JFEJ-badge">3</span></a>
 				<div class="JFEJ-divider"></div>
@@ -43,11 +44,13 @@
 			</div>
 		</nav>
 
-		<div class="JFEJ-search-panel" id="searchPanel">
+		<div class="JFEJ-search-panel" id="searchPanel" aria-hidden="true" inert>
+			<button class="JFEJ-search-close" type="button" aria-label="Fermer la recherche">✕</button>
 			<h2 class="JFEJ-heading">Recherche</h2>
 			<p class="JFEJ-subheading">Trouvez rapidement vos projets ou fichiers.</p>
 			<input type="search" class="JFEJ-search-input" placeholder="Tapez votre recherche..." aria-label="Rechercher">
 		</div>
+		<button class="JFEJ-search-backdrop" type="button" aria-label="Fermer la recherche"></button>
 
 		<main class="JFEJ-main account-main">
 			<header class="JFEJ-header account-page-header">
@@ -68,9 +71,6 @@
 								<span class="badge badge-status">Compte actif</span>
 							</div>
 						</div>
-					</div>
-					<div class="header-actions">
-						<button id="btn-quick-logout" class="btn-logout" type="button">Déconnexion</button>
 					</div>
 				</section>
 

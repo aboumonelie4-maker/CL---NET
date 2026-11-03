@@ -129,27 +129,6 @@ body.light-mode .edit-select option {
 	color: #9ee3ae;
 }
 
-.header-actions {
-	display: flex;
-	align-items: center;
-}
-
-.btn-logout {
-	padding: 9px 14px;
-	border: 1px solid rgba(255, 123, 112, 0.42);
-	border-radius: 8px;
-	background: rgba(255, 123, 112, 0.1);
-	color: #ffaaa1;
-	font: inherit;
-	font-size: 0.82rem;
-	font-weight: 600;
-	cursor: pointer;
-}
-
-.btn-logout:hover {
-	background: rgba(255, 123, 112, 0.2);
-}
-
 .profile-stats-grid {
 	display: grid;
 	grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -375,15 +354,21 @@ body.light-mode .edit-select option {
 		padding: 24px 16px;
 	}
 
+	.profile-container {
+		gap: 14px;
+	}
+
 	.profile-stats-grid {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
 
 	.profile-card-header {
+		gap: 16px;
 		padding: 20px;
 	}
 
 	.profile-user-info {
+		width: 100%;
 		align-items: flex-start;
 		gap: 12px;
 	}
@@ -405,5 +390,17 @@ body.light-mode .edit-select option {
 
 	.info-value {
 		text-align: left;
+	}
+
+	.profile-card-section {
+		padding: 18px;
+	}
+
+	.specialite-fields {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.btn-save-profile {
+		width: 100%;
 	}
 }

@@ -292,6 +292,10 @@
     text-decoration: none;
 }
 
+.JFEJ-exit-messages {
+    display: none;
+}
+
 .JFEJ-chat {
     display: flex;
     flex: 1;
@@ -461,7 +465,39 @@ body.light-mode .JFEJ-club-list a:hover {
 body.light-mode .JFEJ-message-bubble { background: rgba(34, 16, 44, 0.045); }
 body.light-mode .JFEJ-profile-card { background: rgba(255, 255, 255, 0.45); }
 
-@media (max-width: 1000px) {
+@media (max-width: 1100px) {
+    .JFEJ-conversation-header {
+        gap: 12px;
+    }
+
+    .JFEJ-exit-messages {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        min-height: 40px;
+        padding: 8px 12px;
+        border: 1px solid rgba(255, 255, 255, 0.24);
+        border-radius: 10px;
+        background: linear-gradient(135deg, #8a2be2, #ff007f);
+        box-shadow: 0 6px 18px rgba(138, 43, 226, 0.28);
+        color: #fff;
+        font-size: 12px;
+        font-weight: 700;
+        text-decoration: none;
+        white-space: nowrap;
+    }
+
+    .JFEJ-exit-messages span {
+        font-size: 18px;
+        line-height: 1;
+    }
+
+    .JFEJ-exit-messages:focus-visible {
+        outline: 2px solid #ff007f;
+        outline-offset: 3px;
+    }
+
     .JFEJ-messages-app {
         grid-template-columns: minmax(245px, 285px) minmax(0, 1fr);
         grid-template-rows: minmax(0, 1fr) auto;
@@ -536,7 +572,23 @@ body.light-mode .JFEJ-profile-card { background: rgba(255, 255, 255, 0.45); }
     .JFEJ-contact-avatar { width: 34px; height: 34px; }
     .JFEJ-contact-time { display: none; }
     .JFEJ-conversation { min-height: 54dvh; }
-    .JFEJ-conversation-header { padding: 15px 18px; }
+    .JFEJ-conversation-header {
+        gap: 8px;
+        padding: 15px 12px;
+    }
+
+    .JFEJ-exit-messages {
+        gap: 4px;
+        min-height: 38px;
+        padding: 7px 8px;
+        font-size: 11px;
+    }
+
+    .JFEJ-conversation-account {
+        width: 34px;
+        height: 34px;
+        flex: 0 0 auto;
+    }
     .JFEJ-chat { min-height: 360px; margin: 12px; }
     .JFEJ-profile-panel {
         flex-direction: column;

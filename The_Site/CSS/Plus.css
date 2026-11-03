@@ -87,6 +87,85 @@ button.JFEJ-plus-action {
     font-size: 18px;
 }
 
+.JFEJ-account-actions[hidden] {
+    display: none;
+}
+
+.JFEJ-account-action-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    gap: 12px;
+}
+
+.JFEJ-account-action {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-width: 0;
+    padding: 16px;
+    border: 1px solid var(--glass-border);
+    border-radius: 14px;
+    background: var(--glass-bg);
+    color: var(--text-main);
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.JFEJ-account-action:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.JFEJ-account-action:focus-visible {
+    outline: 2px solid #ff007f;
+    outline-offset: 3px;
+}
+
+.JFEJ-account-action-icon {
+    display: grid;
+    width: 42px;
+    height: 42px;
+    flex: 0 0 auto;
+    place-items: center;
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.08);
+    font-size: 20px;
+}
+
+.JFEJ-account-action > span:last-child {
+    display: grid;
+    gap: 4px;
+}
+
+.JFEJ-account-action strong {
+    font-size: 13px;
+}
+
+.JFEJ-account-action small {
+    color: var(--text-muted);
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+.JFEJ-account-action.is-danger {
+    border-color: rgba(255, 77, 77, 0.32);
+    background: rgba(160, 24, 35, 0.12);
+}
+
+.JFEJ-account-action.is-danger .JFEJ-account-action-icon {
+    border-color: rgba(255, 77, 77, 0.36);
+    background: rgba(160, 24, 35, 0.2);
+    color: #ff9696;
+}
+
+.JFEJ-account-action.is-danger:hover {
+    border-color: rgba(255, 77, 77, 0.55);
+    background: rgba(190, 30, 45, 0.2);
+}
+
 .JFEJ-plus-shortcuts {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Accueil - JFEJ</title>
     <link rel="stylesheet" href="../CSS/Accueil.css">
+    <link rel="stylesheet" href="../CSS/Responsive.css">
 </head>
 <body>
 
@@ -32,7 +33,7 @@
                     <span class="JFEJ-link-icon">🏠</span>
                     <span class="JFEJ-link-text">Accueil</span>
                 </a>
-                <a class="JFEJ-link" href="#" id="btnSearch">
+                <a class="JFEJ-link" href="#" id="btnSearch" aria-controls="searchPanel" aria-expanded="false">
                     <span class="JFEJ-link-icon">🔍</span>
                     <span class="JFEJ-link-text">Rechercher</span>
                 </a>
@@ -70,11 +71,13 @@
         </nav>
 
         <!-- Panneau de Recherche Coulissant -->
-        <div class="JFEJ-search-panel" id="searchPanel">
+        <div class="JFEJ-search-panel" id="searchPanel" aria-hidden="true" inert>
+            <button class="JFEJ-search-close" type="button" aria-label="Fermer la recherche">✕</button>
             <h2 class="JFEJ-heading" style="font-size: 20px;">Recherche</h2>
             <p class="JFEJ-subheading" style="margin-bottom: 12px;">Trouvez rapidement vos projets ou fichiers.</p>
             <input type="text" class="JFEJ-search-input" placeholder="Tapez votre recherche...">
         </div>
+        <button class="JFEJ-search-backdrop" type="button" aria-label="Fermer la recherche"></button>
 
         <!-- CONTENU PRINCIPAL DE L'ACCUEIL -->
         <main class="JFEJ-main">

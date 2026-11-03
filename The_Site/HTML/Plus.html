@@ -6,8 +6,9 @@
     <title>Plus - JFEJ</title>
     <link rel="stylesheet" href="../CSS/Accueil.css">
     <link rel="stylesheet" href="../CSS/Plus.css">
+    <link rel="stylesheet" href="../CSS/Responsive.css">
 </head>
-<body>
+<body data-logout-url="../../JFEJ/HTML/profil.html" data-account-home-url="../../JFEJ/HTML/index.html">
     <div class="JFEJ-app" id="appContainer">
         <div class="JFEJ-bg" aria-hidden="true">
             <div class="JFEJ-blob JFEJ-blob--violet"></div>
@@ -29,7 +30,7 @@
                     <span class="JFEJ-link-icon">🏠</span>
                     <span class="JFEJ-link-text">Accueil</span>
                 </a>
-                <a class="JFEJ-link" href="#" id="btnSearch">
+                <a class="JFEJ-link" href="#" id="btnSearch" aria-controls="searchPanel" aria-expanded="false">
                     <span class="JFEJ-link-icon">🔍</span>
                     <span class="JFEJ-link-text">Rechercher</span>
                 </a>
@@ -65,11 +66,13 @@
             </div>
         </nav>
 
-        <div class="JFEJ-search-panel" id="searchPanel">
+        <div class="JFEJ-search-panel" id="searchPanel" aria-hidden="true" inert>
+            <button class="JFEJ-search-close" type="button" aria-label="Fermer la recherche">✕</button>
             <h2 class="JFEJ-heading">Recherche</h2>
             <p class="JFEJ-subheading">Trouvez rapidement vos projets ou fichiers.</p>
             <input type="search" class="JFEJ-search-input" placeholder="Tapez votre recherche..." aria-label="Rechercher">
         </div>
+        <button class="JFEJ-search-backdrop" type="button" aria-label="Fermer la recherche"></button>
 
         <main class="JFEJ-main">
             <header class="JFEJ-header">
@@ -102,6 +105,20 @@
                     </a>
                 </article>
 
+            </section>
+
+            <section class="JFEJ-plus-section JFEJ-account-actions" id="plusAccountActions" aria-labelledby="plus-account-title" hidden>
+                <h2 class="JFEJ-plus-section-title" id="plus-account-title">Compte et sécurité</h2>
+                <div class="JFEJ-account-action-list">
+                    <button class="JFEJ-account-action" id="btn-quick-logout" type="button">
+                        <span class="JFEJ-account-action-icon" aria-hidden="true">↪</span>
+                        <span><strong>Déconnexion</strong><small>Quitter votre session sur cet appareil.</small></span>
+                    </button>
+                    <button class="JFEJ-account-action is-danger" id="btn-delete-account" type="button">
+                        <span class="JFEJ-account-action-icon" aria-hidden="true">⌫</span>
+                        <span><strong>Supprimer mon compte</strong><small>Supprimer votre compte et les informations enregistrées sur cet appareil.</small></span>
+                    </button>
+                </div>
             </section>
 
             <section class="JFEJ-plus-section" aria-labelledby="plus-shortcuts-title">
