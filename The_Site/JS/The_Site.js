@@ -60,18 +60,29 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
-    const setTheme = (theme) => {
+const setTheme = (theme) => {
         const isDark = theme === 'dark';
         document.body.classList.toggle('dark-mode', isDark);
         document.body.classList.toggle('light-mode', !isDark);
+        
         if (btnTheme) {
             btnTheme.setAttribute('aria-pressed', String(isDark));
+            
+            // Met à jour l'émoji à l'intérieur du bouton d'action
             const icon = btnTheme.querySelector('.JFEJ-plus-action-icon');
             if (icon) icon.textContent = isDark ? '☀️' : '🌙';
         }
-        if (themeLabel) themeLabel.textContent = isDark ? 'Passer au mode clair' : 'Passer au mode sombre';
+        
+        // Met à jour l'émoji de l'icône principale de la carte "Apparence"
+        const plusCardIcon = document.querySelector('.JFEJ-plus-options .JFEJ-plus-card-icon');
+        if (plusCardIcon) {
+            plusCardIcon.textContent = isDark ? '☀️' : '🌙';
+        }
+        
+        if (themeLabel) {
+            themeLabel.textContent = isDark ? 'Passer au mode clair' : 'Passer au mode sombre';
+        }
     };
-
     setTheme(savedTheme);
 
     if (accountActions && currentUser) accountActions.hidden = false;

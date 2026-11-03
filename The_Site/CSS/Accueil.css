@@ -1,3 +1,6 @@
+/* Importation de la police Playfair Display */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700;1,800&display=swap');
+
 /* ==========================================================================
    1. VARIABLES ET CONFIGURATION GLOBALE
    ========================================================================== */
@@ -95,10 +98,28 @@ body {
 .JFEJ-logo-wrapper { display: flex; align-items: center; gap: 10px; white-space: nowrap; }
 .JFEJ-app.is-collapsed .JFEJ-logo-wrapper { opacity: 0; pointer-events: none; width: 0; overflow: hidden; }
 
+/* Nouveau logo mis à jour avec le style du premier code (Playfair Display italique, dégradé signature) */
 .JFEJ-logo-icon {
-    font-family: var(--font-display); font-style: italic; font-size: 30px; font-weight: 700;
-    background: var(--gradient-JFEJ); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+    background: #ffffff;
+    border-radius: 8px;
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 800;
+    font-style: italic;
+    line-height: 1.2;
+    background: linear-gradient(135deg, #b125e9, #e91e8c);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    box-shadow: 0 2px 8px rgba(233, 30, 140, 0.2);
 }
+
 .JFEJ-brand-title { font-size: 15px; font-weight: 700; letter-spacing: 1.2px; color: #fff; }
 .JFEJ-star { color: #ff007f; font-size: 11px; vertical-align: super; }
 
