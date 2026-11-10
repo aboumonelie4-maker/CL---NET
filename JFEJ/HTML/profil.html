@@ -176,12 +176,16 @@
 
     <!-- CAS 2 : UTILISATEUR NON CONNECTÉ (INVITÉ) -->
     <section id="profile-guest-view" class="guest-card">
-      <h2>Espace réservé aux élèves</h2>
+      <h2>Espace Compte</h2>
       <p>Vous n'êtes pas encore connecté. Veuillez vous identifier ou créer un compte pour accéder à votre profil et rejoindre les clubs.</p>
       
       <div class="guest-actions">
         <a href="../Page de Connexion/HTML/Page de connexion.html" class="btn-cta">Se connecter</a>
-        <a href="../Page d'inscription/html/Inscription.html" class="btn-cta" style="background: var(--surface2); color: var(--text); border: 1px solid var(--border);">Créer un compte</a>
+      </div>
+      <h3 class="guest-registration-title">Créer un compte en tant que :</h3>
+      <div class="guest-registration-actions">
+        <a href="../Page d'inscription/html/Inscription.html?role=eleve" class="btn-cta">Élève</a>
+        <a href="../Page d'inscription/html/Inscription.html?role=professeur" class="btn-cta">Professeur</a>
       </div>
     </section>
   </main>

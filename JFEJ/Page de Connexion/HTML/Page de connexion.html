@@ -61,6 +61,14 @@
       <div id="auth-alert" class="auth-alert" role="alert"></div>
 
       <form id="login-form" class="auth-form" action="#" method="POST" novalidate>
+        <div class="form-group">
+          <label for="login-role">Je me connecte en tant que</label>
+          <select id="login-role" name="role" class="form-select" required>
+            <option value="eleve">Élève</option>
+            <option value="professeur">Professeur</option>
+          </select>
+        </div>
+
         <!-- Email -->
         <div class="form-group">
           <label for="email">Adresse email scolaire</label>

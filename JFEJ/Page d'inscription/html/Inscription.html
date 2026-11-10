@@ -61,6 +61,9 @@
       <div id="auth-alert" class="auth-alert" role="alert"></div>
 
       <form id="register-form" class="auth-form" action="#" method="POST" novalidate>
+        <p class="registration-role">Inscription en tant qu'<strong id="registration-role-label">élève</strong></p>
+        <input type="hidden" id="account-role" name="role" value="eleve" />
+
         <!-- Ligne : Prénom et Nom -->
         <div class="form-row">
           <div class="form-group">
@@ -89,8 +92,8 @@
           </div>
         </div>
 
-        <!-- Ligne : Classe et Spécialité -->
-        <div class="form-row">
+        <!-- Informations propres aux élèves -->
+        <div id="student-registration-fields" class="form-row">
           <div class="form-group">
             <label for="classe">Classe</label>
             <select id="classe" name="classe" class="form-select" required>
@@ -148,6 +151,18 @@
             </div>
             <small id="specialite-help" class="form-help">Choisissez votre classe pour connaître le nombre de spécialités à sélectionner.</small>
           </div>
+        </div>
+
+        <div id="teacher-registration-fields" class="form-group" hidden>
+          <label for="matiere">Matière enseignée</label>
+          <input
+            type="text"
+            id="matiere"
+            name="matiere"
+            class="form-input"
+            placeholder="ex. Mathématiques"
+            autocomplete="organization-title"
+          />
         </div>
 
         <!-- Email -->
