@@ -1,4 +1,4 @@
-/* ========== STYLES DE LA PAGE DE PROFIL CL - Net School ========== */
+/* ========== STYLES DE LA PAGE DE PROFIL JFEJ SCHOOL ========== */
 
 .profile-container {
   max-width: 1100px;
@@ -365,18 +365,6 @@
   justify-content: center;
 }
 
-.guest-registration-title {
-  margin: 28px 0 14px;
-  color: var(--text);
-  font-size: 1rem;
-}
-
-.guest-registration-actions {
-  display: flex;
-  gap: 14px;
-  justify-content: center;
-}
-
 @media (max-width: 820px) {
   .profile-main-grid {
     grid-template-columns: 1fr;
@@ -391,12 +379,5 @@
   .header-actions {
     width: 100%;
     justify-content: center;
-  }
-}
-
-@media (max-width: 520px) {
-  .guest-actions,
-  .guest-registration-actions {
-    flex-direction: column;
   }
 }

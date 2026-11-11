@@ -1,5 +1,5 @@
 /* ==========================================================================
-   PAGE DE COMPTE / PROFIL - CL - NET SCHOOL
+   PAGE DE COMPTE / PROFIL - JFEJ SCHOOL
    ========================================================================== */
 
 /* Importation de la police Playfair Display */
@@ -274,6 +274,21 @@ body.light-mode .edit-select option {
 .edit-select:focus,
 .edit-textarea:focus {
     border-color: var(--account-accent-cool);
+}
+
+.edit-color {
+    width: 52px;
+    height: 40px;
+    padding: 3px;
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    background: rgba(5, 7, 12, 0.55);
+    cursor: pointer;
+}
+
+.edit-color:focus-visible {
+    outline: 2px solid var(--account-accent-cool);
+    outline-offset: 2px;
 }
 
 .edit-select option {

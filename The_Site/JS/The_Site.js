@@ -60,20 +60,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
-const setTheme = (theme) => {
+    const setTheme = (theme) => {
         const isDark = theme === 'dark';
         document.body.classList.toggle('dark-mode', isDark);
         document.body.classList.toggle('light-mode', !isDark);
         
         if (btnTheme) {
             btnTheme.setAttribute('aria-pressed', String(isDark));
-            
-            // Met à jour l'émoji à l'intérieur du bouton d'action
             const icon = btnTheme.querySelector('.JFEJ-plus-action-icon');
             if (icon) icon.textContent = isDark ? '☀️' : '🌙';
         }
         
-        // Met à jour l'émoji de l'icône principale de la carte "Apparence"
         const plusCardIcon = document.querySelector('.JFEJ-plus-options .JFEJ-plus-card-icon');
         if (plusCardIcon) {
             plusCardIcon.textContent = isDark ? '☀️' : '🌙';
@@ -82,8 +79,16 @@ const setTheme = (theme) => {
         if (themeLabel) {
             themeLabel.textContent = isDark ? 'Passer au mode clair' : 'Passer au mode sombre';
         }
+        localStorage.setItem('JFEJ-theme', theme);
     };
     setTheme(savedTheme);
+
+    if (btnTheme) {
+        btnTheme.addEventListener('click', () => {
+            const currentTheme = document.body.classList.contains('dark-mode') ? 'light' : 'dark';
+            setTheme(currentTheme);
+        });
+    }
 
     if (accountActions && currentUser) accountActions.hidden = false;
 
@@ -135,7 +140,12 @@ const setTheme = (theme) => {
         const username = document.querySelector('.JFEJ-user .JFEJ-username');
         const userRole = document.querySelector('.JFEJ-user .JFEJ-userrole');
 
-        if (avatar) avatar.textContent = `${firstName.charAt(0)}${lastName.charAt(0)}`.toUpperCase();
+        if (avatar) {
+            avatar.textContent = `${firstName.charAt(0)}${lastName.charAt(0)}`.toUpperCase();
+            if (/^#[0-9a-f]{6}$/i.test(currentUser.profileColor || '')) {
+                avatar.style.background = currentUser.profileColor;
+            }
+        }
         if (username) username.textContent = `${firstName} ${lastName}`.trim();
         if (userRole) userRole.textContent = currentUser.classe || 'Élève';
     }
@@ -178,21 +188,39 @@ const setTheme = (theme) => {
             specialtyList.append(emptyMessage);
         } else {
             specialtyDetails.forEach(({ name, icon, style }) => {
-                const link = document.createElement('a');
-                link.href = '../../JFEJ/HTML/vie-scolaire.html#clubs-grid';
+                const groupButton = document.createElement('button');
+                groupButton.className = 'JFEJ-contact';
+                groupButton.type = 'button';
+                groupButton.setAttribute('data-message-contact', '');
+                groupButton.dataset.name = `Groupe ${name}`;
+                groupButton.dataset.initials = name.slice(0, 3).toUpperCase();
+                groupButton.dataset.class = `Spécialité ${name}`;
+                groupButton.dataset.specialties = name;
+                groupButton.dataset.status = 'online';
+                groupButton.dataset.profileBio = `Canal de discussion et d'entraide dédié à la spécialité ${name}.`;
+                groupButton.dataset.color = 'blue';
+                groupButton.dataset.messageOne = `Bienvenue sur le canal du groupe ${name} !`;
+                groupButton.dataset.messageTwo = `Partagez vos exercices et posez vos questions ici.`;
+
                 const iconElement = document.createElement('span');
-                iconElement.className = `JFEJ-club-icon ${style}`;
+                iconElement.className = `JFEJ-contact-avatar ${style}`;
                 iconElement.setAttribute('aria-hidden', 'true');
                 iconElement.textContent = icon;
-                const nameElement = document.createElement('span');
-                nameElement.textContent = name;
-                link.append(iconElement, nameElement);
-                specialtyList.append(link);
+
+                const copyElement = document.createElement('span');
+                copyElement.className = 'JFEJ-contact-copy';
+                const strongElement = document.createElement('strong');
+                strongElement.textContent = `Groupe ${name}`;
+                const smallElement = document.createElement('small');
+                smallElement.textContent = `Discussion de spécialité`;
+                copyElement.append(strongElement, smallElement);
+
+                groupButton.append(iconElement, copyElement);
+                specialtyList.append(groupButton);
             });
         }
     }
 
-    // Réduire / Agrandir le menu
     if (btnToggleSidebar) {
         btnToggleSidebar.addEventListener('click', () => {
             appContainer.classList.toggle('is-collapsed');
@@ -200,7 +228,6 @@ const setTheme = (theme) => {
         });
     }
 
-    // Ouvrir / Fermer le panneau de recherche
     if (btnSearch && searchPanel) {
         const searchInput = searchPanel.querySelector('.JFEJ-search-input');
         let suggestions = searchPanel.querySelector('.JFEJ-search-suggestions');
@@ -225,6 +252,13 @@ const setTheme = (theme) => {
             link.className = 'JFEJ-search-result';
             link.href = messageUrl(contact.name);
             link.style.setProperty('--result-index', String(index));
+            link.dataset.profileName = contact.name;
+            link.dataset.profileInitials = contact.initials;
+            link.dataset.profileClass = contact.className || 'Élève';
+            link.dataset.profileSpecialties = contact.specialties || 'Aucune spécialité';
+            link.dataset.profileStatus = contact.status || 'online';
+            link.dataset.profileBio = contact.bio || 'Aucune biographie renseignée.';
+            link.dataset.profileColor = contact.color || 'violet';
 
             const avatar = document.createElement('span');
             avatar.className = `JFEJ-search-result-avatar avatar-${contact.color}`;
@@ -341,14 +375,20 @@ const setTheme = (theme) => {
         });
     }
 
-    const messageContacts = document.querySelectorAll('[data-message-contact]');
-    if (messageContacts.length > 0) {
+    const initMessaging = () => {
+        const messageContacts = document.querySelectorAll('[data-message-contact]');
+        if (messageContacts.length === 0) return;
+
+        const profilePanel = document.getElementById('contactProfilePanel');
+        const profileToggle = document.getElementById('btnToggleProfilePanel');
+        const profileFriendBtn = document.getElementById('profilePanelFriendBtn');
         const profileName = document.getElementById('profileName');
         const profileAvatar = document.getElementById('profileAvatar');
         const profileClass = document.getElementById('profileClass');
         const profileSpecialties = document.getElementById('profileSpecialties');
         const profileStatus = document.getElementById('profileStatus');
         const profileStatusDot = document.getElementById('profileStatusDot');
+        const profileBio = document.getElementById('profileBio');
         const conversationName = document.getElementById('conversationName');
         const conversationAvatar = document.getElementById('conversationAvatar');
         const conversationStatus = document.getElementById('conversationStatus');
@@ -358,10 +398,49 @@ const setTheme = (theme) => {
         const incomingMessage = document.getElementById('incomingMessage');
         const replyMessage = document.getElementById('replyMessage');
 
+        messageContacts.forEach((contact) => {
+            const nameElement = contact.querySelector('.JFEJ-contact-copy strong');
+            const avatarElement = contact.querySelector('.JFEJ-contact-avatar');
+            const safeProfileName = contact.dataset.profileName || contact.dataset.name || nameElement?.textContent.trim() || 'Inconnu';
+            const safeProfileInitials = contact.dataset.profileInitials || contact.dataset.initials || (safeProfileName.split(' ').map((part) => part[0]).join('').slice(0, 2).toUpperCase() || '??');
+            const safeProfileClass = contact.dataset.profileClass || contact.dataset.class || 'Élève';
+            const safeProfileSpecialties = contact.dataset.profileSpecialties || contact.dataset.specialties || 'Aucune spécialité';
+            const safeProfileStatus = contact.dataset.profileStatus || contact.dataset.status || 'online';
+            const safeProfileBio = contact.dataset.profileBio || contact.dataset.bio || 'Aucune biographie renseignée.';
+            const safeProfileColor = contact.dataset.profileColor || contact.dataset.color || 'violet';
+
+            contact.dataset.profileName = safeProfileName;
+            contact.dataset.profileInitials = safeProfileInitials;
+            contact.dataset.profileClass = safeProfileClass;
+            contact.dataset.profileSpecialties = safeProfileSpecialties;
+            contact.dataset.profileStatus = safeProfileStatus;
+            contact.dataset.profileBio = safeProfileBio;
+            contact.dataset.profileColor = safeProfileColor;
+        });
+
+        const updateProfilePanelVisibility = (isVisible) => {
+            if (!profilePanel) return;
+            profilePanel.classList.toggle('is-open', isVisible);
+            profilePanel.classList.toggle('is-hidden', !isVisible);
+            const app = document.querySelector('.JFEJ-messages-app');
+            if (app) app.classList.toggle('has-profile-panel', isVisible);
+            if (profileToggle) {
+                profileToggle.textContent = isVisible ? 'Masquer le profil' : 'Profil';
+                profileToggle.setAttribute('aria-expanded', String(isVisible));
+            }
+        };
+
+        const updateFriendButton = (name) => {
+            if (!profileFriendBtn) return;
+            const friends = JSON.parse(localStorage.getItem('jfej_friends') || '[]');
+            profileFriendBtn.textContent = friends.some((friend) => friend.name === name) ? '✓ Ami ajouté' : '+ Ajouter en amis';
+        };
+
         const setContact = (contact) => {
-            const { name, initials, class: className, specialties, status, messageOne, messageTwo } = contact.dataset;
+            const { profileName: name, profileInitials: initials, profileClass: className, profileSpecialties: specialties, profileStatus: status, profileBio: bio, profileColor: color, messageOne, messageTwo } = contact.dataset;
             const isOnline = status === 'online';
             const presenceText = isOnline ? 'En ligne' : 'Hors ligne';
+            const isGroup = !!(contact.closest('.JFEJ-club-list') || contact.dataset.profileGroup === 'true');
 
             messageContacts.forEach((item) => {
                 const isSelected = item === contact;
@@ -369,46 +448,124 @@ const setTheme = (theme) => {
                 item.setAttribute('aria-pressed', String(isSelected));
             });
 
-            if (profileName) profileName.textContent = name;
+            if (profileName) {
+                profileName.textContent = name;
+                profileName.dataset.profileName = name;
+                profileName.dataset.profileInitials = initials;
+                profileName.dataset.profileClass = className;
+                profileName.dataset.profileSpecialties = specialties;
+                profileName.dataset.profileStatus = status;
+                profileName.dataset.profileBio = bio;
+                profileName.dataset.profileColor = color;
+            }
+            if (profileToggle) {
+                profileToggle.disabled = isGroup;
+                updateProfilePanelVisibility(!isGroup && profilePanel?.classList.contains('is-open'));
+            }
             if (profileClass) profileClass.textContent = className;
             if (profileSpecialties) profileSpecialties.textContent = specialties;
             if (profileStatus) profileStatus.textContent = presenceText;
             if (profileStatusDot) profileStatusDot.classList.toggle('is-online', isOnline);
-            if (conversationName) conversationName.textContent = name;
+            if (profileBio) profileBio.textContent = bio;
+
+            if (conversationName) {
+                conversationName.textContent = name;
+                conversationName.dataset.profileName = name;
+                conversationName.dataset.profileInitials = initials;
+                conversationName.dataset.profileClass = className;
+                conversationName.dataset.profileSpecialties = specialties;
+                conversationName.dataset.profileStatus = status;
+                conversationName.dataset.profileBio = bio;
+                conversationName.dataset.profileColor = color;
+            }
             if (conversationStatus) conversationStatus.textContent = presenceText;
             if (conversationStatusDot) conversationStatusDot.classList.toggle('is-online', isOnline);
-            if (messageAuthor) messageAuthor.textContent = name;
-            if (incomingMessage) incomingMessage.textContent = messageOne;
-            if (replyMessage) replyMessage.textContent = messageTwo;
+
+            if (messageAuthor) {
+                messageAuthor.textContent = name;
+                messageAuthor.dataset.profileName = name;
+                messageAuthor.dataset.profileInitials = initials;
+                messageAuthor.dataset.profileClass = className;
+                messageAuthor.dataset.profileSpecialties = specialties;
+                messageAuthor.dataset.profileStatus = status;
+                messageAuthor.dataset.profileBio = bio;
+                messageAuthor.dataset.profileColor = color;
+            }
+            if (incomingMessage) incomingMessage.textContent = messageOne || 'Bienvenue dans la conversation !';
+            if (replyMessage) replyMessage.textContent = messageTwo || 'Envoyez un message pour commencer.';
 
             const contactAvatar = contact.querySelector('.JFEJ-contact-avatar');
             [profileAvatar, conversationAvatar, messageAvatar].forEach((avatar) => {
-                if (!avatar || !contactAvatar) return;
-                avatar.firstChild.textContent = initials;
-                avatar.classList.remove('avatar-violet', 'avatar-rose', 'avatar-blue', 'avatar-orange');
-                const colorClass = Array.from(contactAvatar.classList).find((className) => className.startsWith('avatar-'));
-                if (colorClass) avatar.classList.add(colorClass);
+                if (!avatar) return;
+                const textSpan = avatar.querySelector('span:not(.JFEJ-presence)') || avatar;
+                if (textSpan && textSpan !== avatar) textSpan.textContent = initials;
+                else avatar.childNodes[0].nodeValue = initials;
+
+                avatar.className = avatar.className.replace(/avatar-\w+|club-\w+/g, '').trim();
+                if (contactAvatar) {
+                    const matchedClass = Array.from(contactAvatar.classList).find(c => c.startsWith('avatar-') || c.startsWith('club-'));
+                    if (matchedClass) avatar.classList.add(matchedClass);
+                }
                 const presence = avatar.querySelector('.JFEJ-presence');
                 if (presence) presence.classList.toggle('is-online', isOnline);
             });
         };
 
+        if (profileToggle) {
+            profileToggle.addEventListener('click', () => {
+                const shouldOpen = !profilePanel?.classList.contains('is-open');
+                if (profileToggle.disabled) return;
+                updateProfilePanelVisibility(shouldOpen);
+            });
+        }
+
+        if (profileFriendBtn) {
+            profileFriendBtn.addEventListener('click', () => {
+                const activeName = profileName?.textContent?.trim() || 'Inconnu';
+                const friends = JSON.parse(localStorage.getItem('jfej_friends') || '[]');
+                const exists = friends.some((friend) => friend.name === activeName);
+                if (exists) {
+                    const nextFriends = friends.filter((friend) => friend.name !== activeName);
+                    localStorage.setItem('jfej_friends', JSON.stringify(nextFriends));
+                    profileFriendBtn.textContent = '+ Ajouter en amis';
+                    return;
+                }
+                friends.push({ name: activeName, addedAt: new Date().toISOString() });
+                localStorage.setItem('jfej_friends', JSON.stringify(friends));
+                profileFriendBtn.textContent = '✓ Ami ajouté';
+            });
+        }
+
         messageContacts.forEach((contact) => {
-            contact.addEventListener('click', () => setContact(contact));
+            contact.addEventListener('click', () => {
+                const isGroup = !!(contact.closest('.JFEJ-club-list') || contact.dataset.profileGroup === 'true');
+                setContact(contact);
+                if (isGroup) {
+                    updateProfilePanelVisibility(false);
+                    profileToggle.disabled = true;
+                    return;
+                }
+                profileToggle.disabled = false;
+                updateProfilePanelVisibility(false);
+            });
         });
 
         const requestedContact = new URLSearchParams(window.location.search).get('contact');
         const selectedContact = Array.from(messageContacts).find((contact) => (
-            normalizeSearchText(contact.dataset.name) === normalizeSearchText(requestedContact || '')
-        ));
-        if (selectedContact) setContact(selectedContact);
-    }
+            normalizeSearchText(contact.dataset.profileName || contact.dataset.name || '') === normalizeSearchText(requestedContact || '')
+        )) || messageContacts[0];
 
-    if (btnTheme) {
-        btnTheme.addEventListener('click', () => {
-            const nextTheme = document.body.classList.contains('dark-mode') ? 'light' : 'dark';
-            localStorage.setItem('JFEJ-theme', nextTheme);
-            setTheme(nextTheme);
-        });
-    }
+        if (selectedContact) {
+            setContact(selectedContact);
+            const selectedIsGroup = !!(selectedContact.closest('.JFEJ-club-list') || selectedContact.dataset.profileGroup === 'true');
+            profileToggle.disabled = selectedIsGroup;
+            updateProfilePanelVisibility(false);
+        } else {
+            if (profileToggle) profileToggle.disabled = true;
+            updateProfilePanelVisibility(false);
+        }
+    };
+
+    initMessaging();
+
 });

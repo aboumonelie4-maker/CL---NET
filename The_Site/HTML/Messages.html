@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Messages - CL - Net</title>
+    <title>Messages - JFEJ</title>
     <link rel="stylesheet" href="../CSS/Accueil.css">
     <link rel="stylesheet" href="../CSS/Messages.css">
     <link rel="stylesheet" href="../CSS/Responsive.css">
@@ -11,17 +11,25 @@
 <body>
     <div class="JFEJ-messages-app">
         <aside class="JFEJ-contacts-panel" aria-label="Contacts et clubs">
-            <a class="JFEJ-messages-brand" href="Accueil.html" aria-label="CL - Net, retour à l'accueil">
-                <span class="JFEJ-logo-icon">C</span>
-                <span class="JFEJ-brand-title">CL - Net <span class="JFEJ-star">✦</span></span>
+            <a class="JFEJ-messages-brand" href="Accueil.html" aria-label="JFEJ, retour à l'accueil">
+                <span class="JFEJ-logo-icon">J</span>
+                <span class="JFEJ-brand-title">JFEJ <span class="JFEJ-star">✦</span></span>
             </a>
 
+            <!-- 3. Section Spécialités convertie en discussions de groupe -->
             <section class="JFEJ-contact-section JFEJ-clubs-section" aria-labelledby="clubs-title">
                 <div class="JFEJ-panel-heading">
-                    <h2 id="clubs-title">Mes spécialités</h2>
+                    <h2 id="clubs-title">Groupes de spécialités</h2>
                 </div>
-                <nav class="JFEJ-club-list" id="userSpecialties" aria-label="Mes spécialités">
-                    <p class="JFEJ-clubs-empty">Connectez-vous et choisissez vos spécialités depuis votre compte.</p>
+                <nav class="JFEJ-club-list" id="userSpecialties" aria-label="Groupes de spécialités">
+                    <button class="JFEJ-contact" type="button" data-message-contact data-profile-group="true" data-profile-name="Groupe NSI" data-profile-initials="NSI" data-profile-class="Spécialité NSI" data-profile-specialties="Numérique et Sciences Informatiques" data-profile-status="online" data-profile-bio="Canal de discussion dédié aux entraînements et projets de NSI." data-profile-color="blue" data-name="Groupe NSI" data-initials="NSI" data-class="Spécialité NSI" data-specialties="NSI" data-status="online" data-preview="Nouveau message du projet Flask..." data-message-one="Pensez à pousser vos codes sur le dépôt partagé." data-message-two="C'est fait pour ma part !" aria-pressed="false">
+                        <span class="JFEJ-contact-avatar club-nsi">NSI</span>
+                        <span class="JFEJ-contact-copy"><strong>Groupe NSI</strong><small>Projet Flask en cours...</small></span>
+                    </button>
+                    <button class="JFEJ-contact" type="button" data-message-contact data-profile-group="true" data-profile-name="Groupe Mathématiques" data-profile-initials="MATH" data-profile-class="Spécialité Mathématiques" data-profile-specialties="Mathématiques expertes / complémentaires" data-profile-status="online" data-profile-bio="Espace d'entraide pour les exercices sur les suites et les dérivées." data-profile-color="violet" data-name="Groupe Mathématiques" data-initials="MATH" data-class="Spécialité Maths" data-specialties="Mathématiques" data-status="online" data-preview="Qui a la solution de l'exo 3 ?" data-message-one="Quelqu'un a compris la récurrence de l'exercice 3 ?" data-message-two="Oui, il faut initialiser puis supposer vrai au rang n." aria-pressed="false">
+                        <span class="JFEJ-contact-avatar club-maths">MATH</span>
+                        <span class="JFEJ-contact-copy"><strong>Groupe Mathématiques</strong><small>Qui a la solution de l'exo 3 ?</small></span>
+                    </button>
                 </nav>
             </section>
 
@@ -31,42 +39,22 @@
                     <span class="JFEJ-panel-count">4</span>
                 </div>
                 <div class="JFEJ-contact-list">
-                    <button class="JFEJ-contact is-selected" type="button" data-message-contact
-                        data-name="Lucas Bernard" data-initials="LB" data-class="Terminale générale"
-                        data-specialties="NSI, Mathématiques, Physique-Chimie" data-status="online"
-                        data-preview="Tu as avancé sur le devoir de physique ?"
-                        data-message-one="Tu as avancé sur le devoir de physique ?" data-message-two="Oui, je viens de terminer l'exercice 4. Je t'envoie ma méthode !"
-                        aria-pressed="true">
+                    <button class="JFEJ-contact is-selected" type="button" data-message-contact data-profile-name="Lucas Bernard" data-profile-initials="LB" data-profile-class="Terminale générale" data-profile-specialties="NSI, Mathématiques, Physique-Chimie" data-profile-status="online" data-profile-bio="Je m'intéresse au code, aux sciences et à la préparation de concours. J'aime bien travailler en équipe sur des projets concrets." data-profile-color="violet" data-name="Lucas Bernard" data-initials="LB" data-class="Terminale générale" data-specialties="NSI, Mathématiques, Physique-Chimie" data-status="online" data-preview="Tu as avancé sur le devoir de physique ?" data-message-one="Tu as avancé sur le devoir de physique ?" data-message-two="Oui, je viens de terminer l'exercice 4. Je t'envoie ma méthode !" aria-pressed="true">
                         <span class="JFEJ-contact-avatar avatar-violet">LB<span class="JFEJ-presence is-online" aria-label="En ligne"></span></span>
                         <span class="JFEJ-contact-copy"><strong>Lucas Bernard</strong><small>Tu as avancé sur le devoir de physique ?</small></span>
                         <span class="JFEJ-contact-time">11:15</span>
                     </button>
-                    <button class="JFEJ-contact" type="button" data-message-contact
-                        data-name="Sarah K." data-initials="SK" data-class="Première générale"
-                        data-specialties="Mathématiques, HGGSP, SES" data-status="offline"
-                        data-preview="On se retrouve au CDI ?"
-                        data-message-one="On se retrouve au CDI à la pause de 10h ?" data-message-two="Oui, je t'attends devant l'entrée."
-                        aria-pressed="false">
+                    <button class="JFEJ-contact" type="button" data-message-contact data-profile-name="Sarah K." data-profile-initials="SK" data-profile-class="Première générale" data-profile-specialties="Mathématiques, HGGSP, SES" data-profile-status="offline" data-profile-bio="Je suis très motivée par les sciences humaines et les maths. J'adore aussi organiser des sorties entre camarades." data-profile-color="rose" data-name="Sarah K." data-initials="SK" data-class="Première générale" data-specialties="Mathématiques, HGGSP, SES" data-status="offline" data-preview="On se retrouve au CDI ?" data-message-one="On se retrouve au CDI à la pause de 10h ?" data-message-two="Oui, je t'attends devant l'entrée." aria-pressed="false">
                         <span class="JFEJ-contact-avatar avatar-rose">SK<span class="JFEJ-presence" aria-label="Hors ligne"></span></span>
                         <span class="JFEJ-contact-copy"><strong>Sarah K.</strong><small>On se retrouve au CDI ?</small></span>
                         <span class="JFEJ-contact-time">09:02</span>
                     </button>
-                    <button class="JFEJ-contact" type="button" data-message-contact
-                        data-name="Emma Petit" data-initials="EP" data-class="Terminale générale"
-                        data-specialties="SVT, Physique-Chimie, Mathématiques" data-status="online"
-                        data-preview="Merci pour la fiche de révision !"
-                        data-message-one="Merci pour la fiche de révision !" data-message-two="Avec plaisir, j'ajouterai la partie sur la génétique demain."
-                        aria-pressed="false">
+                    <button class="JFEJ-contact" type="button" data-message-contact data-profile-name="Emma Petit" data-profile-initials="EP" data-profile-class="Terminale générale" data-profile-specialties="SVT, Physique-Chimie, Mathématiques" data-profile-status="online" data-profile-bio="Je suis passionnée par la biologie et les sciences de la vie. J'aime aussi partager des fiches de révision bien structurées." data-profile-color="blue" data-name="Emma Petit" data-initials="EP" data-class="Terminale générale" data-specialties="SVT, Physique-Chimie, Mathématiques" data-status="online" data-preview="Merci pour la fiche de révision !" data-message-one="Merci pour la fiche de révision !" data-message-two="Avec plaisir, j'ajouterai la partie sur la génétique demain." aria-pressed="false">
                         <span class="JFEJ-contact-avatar avatar-blue">EP<span class="JFEJ-presence is-online" aria-label="En ligne"></span></span>
                         <span class="JFEJ-contact-copy"><strong>Emma Petit</strong><small>Merci pour la fiche de révision !</small></span>
                         <span class="JFEJ-contact-time">Hier</span>
                     </button>
-                    <button class="JFEJ-contact" type="button" data-message-contact
-                        data-name="Yanis Moreau" data-initials="YM" data-class="Première générale"
-                        data-specialties="NSI, Mathématiques, Physique-Chimie" data-status="offline"
-                        data-preview="Tu peux m'aider pour le code Python ?"
-                        data-message-one="Tu peux m'aider pour le code Python ?" data-message-two="Bien sûr ! Envoie-moi l'énoncé et on regarde ça ensemble."
-                        aria-pressed="false">
+                    <button class="JFEJ-contact" type="button" data-message-contact data-profile-name="Yanis Moreau" data-profile-initials="YM" data-profile-class="Première générale" data-profile-specialties="NSI, Mathématiques, Physique-Chimie" data-profile-status="offline" data-profile-bio="Je passe beaucoup de temps sur les projets de code et sur la robotique. Je cherche toujours à améliorer mes méthodes et à aider les autres." data-profile-color="orange" data-name="Yanis Moreau" data-initials="YM" data-class="Première générale" data-specialties="NSI, Mathématiques, Physique-Chimie" data-status="offline" data-preview="Tu peux m'aider pour le code Python ?" data-message-one="Tu peux m'aider pour le code Python ?" data-message-two="Bien sûr ! Envoie-moi l'énoncé et on regarde ça ensemble." aria-pressed="false">
                         <span class="JFEJ-contact-avatar avatar-orange">YM<span class="JFEJ-presence" aria-label="Hors ligne"></span></span>
                         <span class="JFEJ-contact-copy"><strong>Yanis Moreau</strong><small>Tu peux m'aider pour le code Python ?</small></span>
                         <span class="JFEJ-contact-time">Lun.</span>
@@ -74,6 +62,7 @@
                 </div>
             </section>
 
+            <!-- 1. Bouton unique de retour à l'accueil placé en bas à gauche -->
             <a class="JFEJ-back-home" href="Accueil.html"><span aria-hidden="true">←</span> Retour à l’accueil</a>
         </aside>
 
@@ -83,8 +72,10 @@
                     <p class="JFEJ-conversation-eyebrow">MESSAGERIE</p>
                     <h1>Messages</h1>
                 </div>
-                <a class="JFEJ-exit-messages" href="Accueil.html"><span aria-hidden="true">←</span> Quitter les messages</a>
-                <a class="JFEJ-conversation-account" href="Mon%20compte.html" aria-label="Ouvrir mon compte">👤</a>
+                <div class="JFEJ-conversation-tools">
+                    <button id="btnToggleProfilePanel" class="JFEJ-profile-toggle" type="button" aria-expanded="false" aria-controls="contactProfilePanel">Profil</button>
+                    <div class="JFEJ-active-chat-info">Discussion active</div>
+                </div>
             </header>
 
             <section class="JFEJ-chat">
@@ -118,7 +109,8 @@
             </section>
         </main>
 
-        <aside class="JFEJ-profile-panel" aria-label="Informations du contact">
+        <!-- 2. Panneau de droite configuré pour afficher dynamiquement le profil du contact sélectionné -->
+        <aside id="contactProfilePanel" class="JFEJ-profile-panel is-hidden" aria-label="Informations du contact">
             <div class="JFEJ-profile-card">
                 <div class="JFEJ-profile-cover" aria-hidden="true"></div>
                 <span class="JFEJ-profile-avatar avatar-violet" id="profileAvatar" aria-hidden="true">LB<span class="JFEJ-presence is-online"></span></span>
@@ -128,16 +120,19 @@
                     <p class="JFEJ-profile-status"><span class="JFEJ-status-dot is-online" id="profileStatusDot"></span><span id="profileStatus">En ligne</span></p>
 
                     <div class="JFEJ-profile-detail">
-                        <span class="JFEJ-profile-detail-icon" aria-hidden="true">🎓</span>
-                        <div><small>Classe</small><strong id="profileClass">Terminale générale</strong></div>
+                        <span class="JFEJ-profile-detail-icon" aria-hidden="type">🎓</span>
+                        <div><small>Classe / Type</small><strong id="profileClass">Terminale générale</strong></div>
                     </div>
                     <div class="JFEJ-profile-detail">
-                        <span class="JFEJ-profile-detail-icon" aria-hidden="true">📚</span>
-                        <div><small>Spécialités</small><strong id="profileSpecialties">NSI, Mathématiques, Physique-Chimie</strong></div>
+                        <span class="JFEJ-profile-detail-icon" aria-hidden="type">📚</span>
+                        <div><small>Spécialités / Matière</small><strong id="profileSpecialties">NSI, Mathématiques, Physique-Chimie</strong></div>
                     </div>
                 </div>
             </div>
-            <p class="JFEJ-profile-note">Les informations de profil sont des exemples d’affichage.</p>
+            <div class="JFEJ-profile-actions">
+                <button id="profilePanelFriendBtn" class="JFEJ-profile-friend-btn" type="button">+ Ajouter en amis</button>
+            </div>
+            <p class="JFEJ-profile-note" id="profileBio">Je m'intéresse au code, aux sciences et à la préparation de concours. J'aime bien travailler en équipe sur des projets concrets.</p>
         </aside>
     </div>
 

@@ -1,5 +1,5 @@
 // ==========================================
-// CL - Net School - Gestion de l'Authentification (Auth)
+// JFEJ School - Gestion de l'Authentification (Auth)
 // Démonstration pédagogique avec localStorage
 // ==========================================
 
@@ -21,7 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // 4. Gestion de la page d'Inscription
   const registerForm = document.getElementById("register-form");
   if (registerForm) {
-    initializeRegistrationRole();
     initializeRegistrationSpecialties();
     registerForm.addEventListener("submit", handleRegister);
   }
@@ -37,7 +36,7 @@ function initDemoUsers() {
     const defaultUser = {
       prenom: "Élève",
       nom: "NSI",
-      email: "eleve@cl-net.fr",
+      email: "eleve@jfej.fr",
       password: "jfej2026",
       classe: "1ère",
       specialite: [
@@ -82,13 +81,10 @@ function handleLogin(e) {
 
   const email = emailInput.value.trim().toLowerCase();
   const password = passwordInput.value;
-  const role = document.getElementById("login-role")?.value || "eleve";
 
   const users = JSON.parse(localStorage.getItem("jfej_users") || "[]");
   const foundUser = users.find(
-    (u) => u.email.toLowerCase() === email
-      && u.password === password
-      && (u.role || "eleve") === role
+    (u) => u.email.toLowerCase() === email && u.password === password
   );
 
   if (foundUser) {
@@ -116,12 +112,10 @@ function handleRegister(e) {
   const prenom = document.getElementById("prenom").value.trim();
   const nom = document.getElementById("nom").value.trim();
   const email = document.getElementById("email").value.trim().toLowerCase();
-  const role = getRegistrationRole();
-  const classe = role === "eleve" ? document.getElementById("classe").value : "";
-  const specialite = role === "eleve"
-    ? getRegistrationSpecialtySelects().map((select) => select.value).filter(Boolean)
-    : [];
-  const matiere = role === "professeur" ? document.getElementById("matiere").value.trim() : "";
+  const classe = document.getElementById("classe") ? document.getElementById("classe").value : "1ère";
+  const specialite = getRegistrationSpecialtySelects()
+    .map((select) => select.value)
+    .filter(Boolean);
   const password = document.getElementById("password").value;
   const confirmPassword = document.getElementById("confirm-password").value;
   const terms = document.getElementById("terms");
@@ -141,8 +135,8 @@ function handleRegister(e) {
     return;
   }
 
-  const requiredSpecialtyCount = role === "eleve" ? getSpecialtyLimit(classe) : 0;
-  if (role === "eleve" && specialite.length !== requiredSpecialtyCount) {
+  const requiredSpecialtyCount = getSpecialtyLimit(classe);
+  if (specialite.length !== requiredSpecialtyCount) {
     showAlert(
       alertBox,
       requiredSpecialtyCount
@@ -150,12 +144,6 @@ function handleRegister(e) {
         : "Aucune spécialité n'est à choisir en Seconde.",
       "error"
     );
-    return;
-  }
-
-  if (role === "professeur" && !matiere) {
-    showAlert(alertBox, "Veuillez indiquer la matière enseignée.", "error");
-    document.getElementById("matiere").focus();
     return;
   }
 
@@ -171,16 +159,12 @@ function handleRegister(e) {
     prenom,
     nom,
     email,
-    role,
     classe,
     specialite,
-    matiere,
     password,
-    bio: role === "professeur"
-      ? `Professeur de ${matiere}.`
-      : requiredSpecialtyCount
-        ? `Élève en ${classe}, spécialités ${specialite.join(", ")}.`
-        : `Élève en ${classe}.`
+    bio: requiredSpecialtyCount
+      ? `Élève en ${classe}, spécialités ${specialite.join(", ")}.`
+      : `Élève en ${classe}.`
   };
 
   completeRegistration();
@@ -204,47 +188,11 @@ function completeRegistration() {
   sessionStorage.setItem("jfej_current_user", JSON.stringify(newUser));
   pendingRegistration = null;
 
-  showAlert(alertBox, `Compte créé avec succès ! Bienvenue ${newUser.prenom} sur CL - Net School. Redirection vers The Site...`, "success");
+  showAlert(alertBox, `Compte créé avec succès ! Bienvenue ${newUser.prenom} sur JFEJ School. Redirection vers The Site...`, "success");
 
   setTimeout(() => {
     window.location.href = "../../../The_Site/HTML/Mon%20compte.html";
   }, 1200);
-}
-
-function initializeRegistrationRole() {
-  const roleInput = document.getElementById("account-role");
-  if (!roleInput) return;
-
-  const requestedRole = new URLSearchParams(window.location.search).get("role");
-  roleInput.value = requestedRole === "professeur" ? "professeur" : "eleve";
-  updateRegistrationRoleFields();
-}
-
-function getRegistrationRole() {
-  const roleInput = document.getElementById("account-role");
-  return roleInput && roleInput.value === "professeur" ? "professeur" : "eleve";
-}
-
-function updateRegistrationRoleFields() {
-  const role = getRegistrationRole();
-  const isStudent = role === "eleve";
-  const roleLabel = document.getElementById("registration-role-label");
-  const studentFields = document.getElementById("student-registration-fields");
-  const teacherFields = document.getElementById("teacher-registration-fields");
-  const classSelect = document.getElementById("classe");
-  const subjectInput = document.getElementById("matiere");
-
-  if (roleLabel) roleLabel.textContent = isStudent ? "élève" : "professeur";
-  if (studentFields) studentFields.hidden = !isStudent;
-  if (teacherFields) teacherFields.hidden = isStudent;
-  if (classSelect) {
-    classSelect.disabled = !isStudent;
-    classSelect.required = isStudent;
-  }
-  getRegistrationSpecialtySelects().forEach((select) => {
-    select.disabled = !isStudent;
-  });
-  if (subjectInput) subjectInput.required = !isStudent;
 }
 
 function initializeRegistrationSpecialties() {
@@ -257,11 +205,10 @@ function initializeRegistrationSpecialties() {
     const limit = getSpecialtyLimit(classSelect.value);
     specialtySelects.forEach((select, index) => {
       select.value = "";
-      const isStudent = getRegistrationRole() === "eleve";
-      select.disabled = !isStudent || index >= limit;
-      select.required = isStudent && index < limit;
+      select.disabled = index >= limit;
+      select.required = index < limit;
       const field = select.closest(".registration-specialty-field");
-      if (field) field.hidden = !isStudent || index >= limit;
+      if (field) field.hidden = index >= limit;
     });
     specialtyHelp.textContent = limit
       ? `Sélectionnez exactement ${limit} spécialité(s) (${limit === 3 ? "Première" : "Terminale"}).`

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CL - Net School — Créer un compte</title>
-  <meta name="description" content="Rejoignez CL - Net School, le mini réseau social pour lycéens. Échangez sur vos spécialités et votre vie scolaire." />
+  <title>JFEJ School — Créer un compte</title>
+  <meta name="description" content="Rejoignez JFEJ School, le mini réseau social pour lycéens. Échangez sur vos spécialités et votre vie scolaire." />
   
   <!-- Feuilles de style -->
   <link rel="stylesheet" href="../../CSS/common.css" />
@@ -16,12 +16,12 @@
   <!-- HEADER TOPBAR -->
   <header class="topbar">
     <div class="container nav">
-      <a href="../../HTML/index.html" class="brand" aria-label="CL - Net School">
+      <a href="../../HTML/index.html" class="brand" aria-label="JFEJ School">
         <div class="brand-mark">
-          <span class="letter-j">C</span>
+          <span class="letter-j">J</span>
         </div>
         <div class="brand-text">
-          <strong>CL - Net School</strong>
+          <strong>JFEJ School</strong>
           <span>Mini réseau social scolaire</span>
         </div>
       </a>
@@ -54,16 +54,13 @@
     <div class="auth-card">
       <div class="auth-header">
         <h1>Créer un compte</h1>
-        <p>Rejoignez la communauté scolaire de CL - Net School</p>
+        <p>Rejoignez la communauté scolaire de JFEJ School</p>
       </div>
 
       <!-- Zone de message d'alerte JS -->
       <div id="auth-alert" class="auth-alert" role="alert"></div>
 
       <form id="register-form" class="auth-form" action="#" method="POST" novalidate>
-        <p class="registration-role">Inscription en tant qu'<strong id="registration-role-label">élève</strong></p>
-        <input type="hidden" id="account-role" name="role" value="eleve" />
-
         <!-- Ligne : Prénom et Nom -->
         <div class="form-row">
           <div class="form-group">
@@ -92,8 +89,8 @@
           </div>
         </div>
 
-        <!-- Informations propres aux élèves -->
-        <div id="student-registration-fields" class="form-row">
+        <!-- Ligne : Classe et Spécialité -->
+        <div class="form-row">
           <div class="form-group">
             <label for="classe">Classe</label>
             <select id="classe" name="classe" class="form-select" required>
@@ -151,18 +148,6 @@
             </div>
             <small id="specialite-help" class="form-help">Choisissez votre classe pour connaître le nombre de spécialités à sélectionner.</small>
           </div>
-        </div>
-
-        <div id="teacher-registration-fields" class="form-group" hidden>
-          <label for="matiere">Matière enseignée</label>
-          <input
-            type="text"
-            id="matiere"
-            name="matiere"
-            class="form-input"
-            placeholder="ex. Mathématiques"
-            autocomplete="organization-title"
-          />
         </div>
 
         <!-- Email -->
@@ -226,7 +211,7 @@
         <!-- Charte d'utilisation -->
         <label class="terms-group">
           <input type="checkbox" id="terms" name="terms" required />
-          <span>J'accepte la charte d'utilisation et le règlement intérieur de CL - Net School.</span>
+          <span>J'accepte la charte d'utilisation et le règlement intérieur de JFEJ School.</span>
         </label>
 
         <!-- Bouton Soumettre -->

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   APPLICATION DE MESSAGERIE - CL - NET SCHOOL
+   APPLICATION DE MESSAGERIE - JFEJ SCHOOL
    ========================================================================== */
 
 /* Importation de la police Playfair Display */
@@ -7,13 +7,18 @@
 
 .JFEJ-messages-app {
     display: grid;
-    grid-template-columns: minmax(270px, 310px) minmax(380px, 1fr) minmax(250px, 310px);
+    grid-template-columns: minmax(270px, 310px) minmax(380px, 1fr) minmax(0, 0px);
     width: 100%;
     height: 100dvh;
     min-height: 0;
     overflow: hidden;
     background: var(--bg-dark);
     color: var(--text-main);
+    transition: grid-template-columns 0.2s ease;
+}
+
+.JFEJ-messages-app.has-profile-panel {
+    grid-template-columns: minmax(270px, 310px) minmax(380px, 1fr) minmax(250px, 310px);
 }
 
 .JFEJ-contacts-panel,
@@ -293,8 +298,32 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 12px;
     padding: 23px 26px 18px;
     border-bottom: 1px solid var(--glass-border);
+}
+
+.JFEJ-conversation-tools {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.JFEJ-profile-toggle {
+    border: 1px solid var(--glass-border);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text-main);
+    font: inherit;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.JFEJ-profile-toggle[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 .JFEJ-conversation-eyebrow,
@@ -427,11 +456,15 @@
 }
 
 .JFEJ-profile-panel {
-    display: flex;
+    display: none;
     flex-direction: column;
     gap: 14px;
     padding: 24px 16px;
     border-left: 1px solid var(--glass-border);
+}
+
+.JFEJ-profile-panel.is-open {
+    display: flex;
 }
 
 .JFEJ-profile-card {
@@ -480,6 +513,193 @@
 }
 
 .JFEJ-profile-note { color: var(--text-muted); font-size: 9px; line-height: 1.5; }
+
+.JFEJ-profile-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.JFEJ-profile-friend-btn {
+    border: 0;
+    border-radius: 10px;
+    background: linear-gradient(120deg, #8060dc, #d94f9b);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 10px 16px;
+    cursor: pointer;
+}
+
+.JFEJ-profile-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    background: rgba(6, 8, 14, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    z-index: 1000;
+}
+
+.JFEJ-profile-modal-backdrop.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.JFEJ-profile-modal {
+    width: min(420px, 100%);
+    border: 1px solid var(--glass-border);
+    border-radius: 22px;
+    background: rgba(17, 17, 28, 0.95);
+    box-shadow: 0 26px 70px rgba(6, 10, 18, 0.5);
+    padding: 20px 20px 16px;
+    transform: translateY(10px) scale(0.98);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.2s ease, opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.JFEJ-profile-modal.is-open {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    visibility: visible;
+}
+
+.JFEJ-profile-modal-close {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    margin-left: auto;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text-main);
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.JFEJ-profile-modal-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 8px;
+}
+
+.JFEJ-profile-modal-avatar {
+    display: grid;
+    place-items: center;
+    width: 66px;
+    height: 66px;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.28);
+    color: #fff;
+    font-size: 20px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #8a63e8, #d94f9b);
+}
+
+.JFEJ-profile-modal-kicker {
+    margin: 0 0 4px;
+    color: var(--text-muted);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.JFEJ-profile-modal-header h3 {
+    margin: 0;
+    color: var(--text-main);
+    font-size: 22px;
+}
+
+.JFEJ-profile-modal-body {
+    display: grid;
+    gap: 16px;
+    margin-top: 18px;
+}
+
+.JFEJ-profile-modal-status {
+    margin: 0;
+    color: #7ee7c2;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.JFEJ-profile-modal-status.is-online { color: #7ee7c2; }
+.JFEJ-profile-modal-status:not(.is-online) { color: #ffb1a8; }
+
+.JFEJ-profile-modal-detail {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--glass-border);
+}
+
+.JFEJ-profile-modal-detail span {
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    font-size: 13px;
+}
+
+.JFEJ-profile-modal-detail div {
+    display: grid;
+    gap: 6px;
+}
+
+.JFEJ-profile-modal-detail small,
+.JFEJ-profile-modal-bio-wrap small {
+    color: var(--text-muted);
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.JFEJ-profile-modal-detail strong,
+.JFEJ-profile-modal-bio-wrap p {
+    color: var(--text-main);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.JFEJ-profile-modal-bio-wrap {
+    display: grid;
+    gap: 8px;
+}
+
+.JFEJ-profile-modal-bio-wrap p {
+    margin: 0;
+}
+
+.JFEJ-profile-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 12px;
+}
+
+.JFEJ-profile-modal-friend {
+    border: 0;
+    border-radius: 10px;
+    background: linear-gradient(120deg, #8060dc, #d94f9b);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 10px 16px;
+    cursor: pointer;
+}
+
+body.light-mode .JFEJ-profile-modal {
+    background: rgba(255, 255, 255, 0.9);
+}
 
 body.light-mode .JFEJ-messages-app { background: var(--bg-dark); }
 

@@ -1,5 +1,5 @@
 // ==========================================
-// CL - Net School - Script de la page de Profil
+// JFEJ School - Script de la page de Profil
 // ==========================================
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -41,6 +41,11 @@ document.addEventListener("DOMContentLoaded", () => {
     confirmSpecialtiesButton.addEventListener("click", () => confirmSpecialties(user));
   }
 
+  const avatarColorInput = document.getElementById("edit-avatar-color");
+  if (avatarColorInput) {
+    avatarColorInput.addEventListener("input", () => applyProfileColor(avatarColorInput.value));
+  }
+
   // Boutons de déconnexion rapide
   const quickLogoutBtn = document.getElementById("btn-quick-logout");
   if (quickLogoutBtn) {
@@ -60,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
 function renderUserProfile(user) {
   const prenom = user.prenom || "Élève";
   const nom = user.nom || "";
-  const email = user.email || "eleve@cl-net.fr";
+  const email = user.email || "eleve@jfej.fr";
   const classe = user.classe || "1ère Générale";
   const specialites = normalizeSpecialties(user.specialite);
   const bio = user.bio || "";
@@ -69,7 +74,13 @@ function renderUserProfile(user) {
   const pInit = prenom.charAt(0).toUpperCase();
   const nInit = nom.charAt(0).toUpperCase() || "J";
   const avatarElem = document.getElementById("avatar-initials");
-  if (avatarElem) avatarElem.textContent = `${pInit}${nInit}`;
+  if (avatarElem) {
+    avatarElem.textContent = `${pInit}${nInit}`;
+    avatarElem.style.background = normalizeProfileColor(user.profileColor);
+  }
+
+  const avatarColorInput = document.getElementById("edit-avatar-color");
+  if (avatarColorInput) avatarColorInput.value = normalizeProfileColor(user.profileColor);
 
   // 2. En-tête
   const nameElem = document.getElementById("profile-display-name");
@@ -115,6 +126,7 @@ function saveProfileChanges(currentUser) {
   const specialtySelects = getSpecialtySelects();
   const newSpe = specialtySelects.map((select) => select.value).filter(Boolean);
   const newClasse = document.getElementById("edit-classe").value;
+  const avatarColorInput = document.getElementById("edit-avatar-color");
   const requiredSpecialtyCount = getSpecialtyLimit(newClasse);
 
   if (newSpe.length !== requiredSpecialtyCount || new Set(newSpe).size !== newSpe.length) {
@@ -131,6 +143,7 @@ function saveProfileChanges(currentUser) {
   currentUser.bio = newBio;
   currentUser.specialite = newSpe;
   currentUser.classe = newClasse;
+  currentUser.profileColor = normalizeProfileColor(avatarColorInput?.value);
 
   persistUserProfile(currentUser);
   renderUserProfile(currentUser);
@@ -142,6 +155,7 @@ function confirmSpecialties(currentUser) {
   const specialtySelects = getSpecialtySelects();
   const newClasse = document.getElementById("edit-classe").value;
   const newSpecialties = specialtySelects.map((select) => select.value).filter(Boolean);
+  const avatarColorInput = document.getElementById("edit-avatar-color");
   const requiredCount = getSpecialtyLimit(newClasse);
   const specialtyHelp = document.getElementById("specialite-help");
 
@@ -157,6 +171,7 @@ function confirmSpecialties(currentUser) {
 
   currentUser.classe = newClasse;
   currentUser.specialite = newSpecialties;
+  currentUser.profileColor = normalizeProfileColor(avatarColorInput?.value);
   persistUserProfile(currentUser);
   renderUserProfile(currentUser);
   if (specialtyHelp) specialtyHelp.textContent = "Vos spécialités ont été confirmées.";
@@ -172,6 +187,18 @@ function persistUserProfile(currentUser) {
     users[userIndex] = currentUser;
     localStorage.setItem("jfej_users", JSON.stringify(users));
   }
+}
+
+function normalizeProfileColor(color) {
+  return /^#[0-9a-f]{6}$/i.test(color || "") ? color : "#8a63e8";
+}
+
+function applyProfileColor(color) {
+  const normalizedColor = normalizeProfileColor(color);
+  const avatar = document.getElementById("avatar-initials");
+  const navigationAvatar = document.querySelector(".JFEJ-user .JFEJ-avatar");
+  if (avatar) avatar.style.background = normalizedColor;
+  if (navigationAvatar) navigationAvatar.style.background = normalizedColor;
 }
 
 // Déconnexion

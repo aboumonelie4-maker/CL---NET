@@ -53,17 +53,6 @@
   font-size: 0.95rem;
 }
 
-.registration-role {
-  margin: 0;
-  color: var(--text);
-  font-weight: 600;
-  text-align: center;
-}
-
-.registration-role strong {
-  color: var(--accent);
-}
-
 /* GRILLE DU FORMULAIRE */
 .auth-form {
   display: flex;
@@ -75,10 +64,6 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
-}
-
-.auth-form [hidden] {
-  display: none;
 }
 
 .form-group {
