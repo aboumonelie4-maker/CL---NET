@@ -1,5 +1,5 @@
 // ==========================================
-// JFEJ School - Gestion de l'Authentification (Auth)
+// CL - Net School - Gestion de l'Authentification (Auth)
 // Démonstration pédagogique avec localStorage
 // ==========================================
 
@@ -37,7 +37,7 @@ function initDemoUsers() {
     const defaultUser = {
       prenom: "Élève",
       nom: "NSI",
-      email: "eleve@jfej.fr",
+      email: "eleve@cl-net.fr",
       password: "jfej2026",
       classe: "1ère",
       specialite: [
@@ -204,7 +204,7 @@ function completeRegistration() {
   sessionStorage.setItem("jfej_current_user", JSON.stringify(newUser));
   pendingRegistration = null;
 
-  showAlert(alertBox, `Compte créé avec succès ! Bienvenue ${newUser.prenom} sur JFEJ School. Redirection vers The Site...`, "success");
+  showAlert(alertBox, `Compte créé avec succès ! Bienvenue ${newUser.prenom} sur CL - Net School. Redirection vers The Site...`, "success");
 
   setTimeout(() => {
     window.location.href = "../../../The_Site/HTML/Mon%20compte.html";

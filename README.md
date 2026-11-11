@@ -2,7 +2,7 @@
 
 Ce dépôt contient 1 projet divisé en 2 fichiers  :
 
-- `JFEJ/` : la page d'accueil et de présentation du site
+- `JFEJ/` : les pages d'accueil et de présentation de CL - Net School
 - `The_Site/` : le site même ou il est possible de communiquer avec ses amis , profs et directeurs
 
 ## Structure du dépôt

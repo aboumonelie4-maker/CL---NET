@@ -1,5 +1,5 @@
 // ==========================================
-// JFEJ School - Script de la page de Profil
+// CL - Net School - Script de la page de Profil
 // ==========================================
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
 function renderUserProfile(user) {
   const prenom = user.prenom || "Élève";
   const nom = user.nom || "";
-  const email = user.email || "eleve@jfej.fr";
+  const email = user.email || "eleve@cl-net.fr";
   const classe = user.classe || "1ère Générale";
   const specialites = normalizeSpecialties(user.specialite);
   const bio = user.bio || "";

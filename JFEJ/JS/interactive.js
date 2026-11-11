@@ -1,6 +1,6 @@
 // Emplacement réservé pour les fonctionnalités dynamiques spécifiques aux cartes ou boutons
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("JFEJ School - Script interactif chargé.");
+  console.log("CL - Net School - Script interactif chargé.");
 
   const revealElements = document.querySelectorAll(".reveal");
 
